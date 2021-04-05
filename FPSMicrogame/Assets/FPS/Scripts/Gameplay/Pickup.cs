@@ -74,7 +74,7 @@ namespace Unity.FPS.Gameplay
 
             if (PickupSfx)
             {
-                AudioUtility.CreateSFX(PickupSfx, transform.position, AudioUtility.AudioGroups.Pickup, 0f);
+                //AudioUtility.CreateSFX(PickupSfx, transform.position, AudioUtility.AudioGroups.Pickup, 0f);
             }
 
             if (PickupVfxPrefab)

@@ -252,7 +252,7 @@ namespace Unity.FPS.Gameplay
             // impact sfx
             if (ImpactSfxClip)
             {
-                AudioUtility.CreateSFX(ImpactSfxClip, point, AudioUtility.AudioGroups.Impact, 1f, 3f);
+                //AudioUtility.CreateSFX(ImpactSfxClip, point, AudioUtility.AudioGroups.Impact, 1f, 3f);
             }
 
             // Self Destruct

@@ -39,7 +39,7 @@ namespace Unity.FPS.Game
             EventManager.AddListener<PlayerDeathEvent>(OnPlayerDeath);
         }
 
-        void Start()
+        /*void Start()
         {
             AudioUtility.SetMasterVolume(1);
         }
@@ -60,7 +60,7 @@ namespace Unity.FPS.Game
                     GameIsEnding = false;
                 }
             }
-        }
+        }*/
 
         void OnAllObjectivesCompleted(AllObjectivesCompletedEvent evt) => EndGame(true);
         void OnPlayerDeath(PlayerDeathEvent evt) => EndGame(false);
@@ -80,11 +80,11 @@ namespace Unity.FPS.Game
                 m_TimeLoadEndGameScene = Time.time + EndSceneLoadDelay + DelayBeforeFadeToBlack;
 
                 // play a sound on win
-                var audioSource = gameObject.AddComponent<AudioSource>();
+                /*var audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.clip = VictorySound;
                 audioSource.playOnAwake = false;
                 audioSource.outputAudioMixerGroup = AudioUtility.GetAudioGroup(AudioUtility.AudioGroups.HUDVictory);
-                audioSource.PlayScheduled(AudioSettings.dspTime + DelayBeforeWinMessage);
+                audioSource.PlayScheduled(AudioSettings.dspTime + DelayBeforeWinMessage);*/
 
                 // create a game message
                 //var message = Instantiate(WinGameMessagePrefab).GetComponent<DisplayMessage>();
