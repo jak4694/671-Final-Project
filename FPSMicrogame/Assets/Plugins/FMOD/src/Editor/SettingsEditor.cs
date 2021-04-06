@@ -76,6 +76,8 @@ namespace FMODUnity
                     return "Stadia";
                 case FMODPlatform.Switch:
                     return "Switch";
+                case FMODPlatform.WebGL:
+                    return "WebGL";
             }
             return "Unknown";
         }
@@ -478,12 +480,7 @@ namespace FMODUnity
                 if (GUILayout.Button("Browse", GUILayout.ExpandWidth(false)))
                 {
                     GUI.FocusControl(null);
-                    string path = EditorUtility.OpenFilePanel("Locate Studio Project", oldPath, "fspro");
-                    if (!string.IsNullOrEmpty(path))
-                    {
-                        settings.SourceProjectPath = MakePathRelative(path);
-                        Repaint();
-                    }
+                    EditorApplication.update += BrowseForSourceProjectPath;
                 }
                 EditorGUILayout.EndHorizontal();
 
@@ -515,12 +512,7 @@ namespace FMODUnity
                 if (GUILayout.Button("Browse", GUILayout.ExpandWidth(false)))
                 {
                     GUI.FocusControl(null);
-                    string newPath = EditorUtility.OpenFolderPanel("Locate Build Folder", oldPath, null);
-                    if (!string.IsNullOrEmpty(newPath))
-                    {
-                        settings.SourceBankPath = MakePathRelative(newPath);
-                        Repaint();
-                    }
+                    EditorApplication.update += BrowseForSourceBankPath;
                 }
                 EditorGUILayout.EndHorizontal();
 
@@ -697,11 +689,13 @@ namespace FMODUnity
                             {
                                 platform = FMODPlatform.PlayInEditor;
                             }
-                            string sourceDir = RuntimeUtils.GetCommonPlatformPath(settings.SourceBankPath + '/' + (settings.HasSourceProject ? settings.GetBankPlatform(platform) + '/' : ""));
+                            string sourceDir = RuntimeUtils.GetCommonPlatformPath(settings.SourceBankPath + '/' + (settings.HasPlatforms ? settings.GetBankPlatform(platform) + '/' : ""));
+                            sourceDir = RuntimeUtils.GetCommonPlatformPath(Path.GetFullPath(sourceDir));
                             var banksFound = new List<string>(Directory.GetFiles(sourceDir, "*.bank", SearchOption.AllDirectories));
                             for (int i = 0; i < banksFound.Count; i++)
                             {
-                                string bankShortName = RuntimeUtils.GetCommonPlatformPath(Path.GetFullPath(banksFound[i])).Replace(sourceDir, "");
+                                string bankLongName = RuntimeUtils.GetCommonPlatformPath(Path.GetFullPath(banksFound[i]));
+                                string bankShortName = bankLongName.Replace(sourceDir, "");
                                 if (!settings.BanksToLoad.Contains(bankShortName))
                                 {
                                     settings.BanksToLoad.Add(bankShortName);
@@ -829,7 +823,7 @@ namespace FMODUnity
             EditorGUI.indentLevel--;
 
             // ----- Windows ----------------------------------------------
-            DisplayPlatform(FMODPlatform.Desktop, null);
+            DisplayPlatform(FMODPlatform.Desktop, new FMODPlatform[] { FMODPlatform.WebGL });
             DisplayPlatform(FMODPlatform.Mobile, new FMODPlatform[] { FMODPlatform.MobileHigh, FMODPlatform.MobileLow, FMODPlatform.AppleTV });
             DisplayPlatform(FMODPlatform.Console, new FMODPlatform[] { FMODPlatform.XboxOne, FMODPlatform.PS4, FMODPlatform.Switch, FMODPlatform.Stadia });
 
@@ -846,6 +840,48 @@ namespace FMODUnity
             {
                 EventManager.RefreshBanks();
             }
+        }
+
+        void BrowseForSourceProjectPath()
+        {
+            Settings settings = target as Settings;
+
+            string newPath = EditorUtility.OpenFilePanel("Locate Studio Project", settings.SourceProjectPath, "fspro");
+
+            if (!string.IsNullOrEmpty(newPath))
+            {
+                newPath = MakePathRelative(newPath);
+
+                if (newPath != settings.SourceProjectPath)
+                {
+                    settings.SourceProjectPath = newPath;
+                    EventManager.RefreshBanks();
+                    Repaint();
+                }
+            }
+
+            EditorApplication.update -= BrowseForSourceProjectPath;
+        }
+
+        void BrowseForSourceBankPath()
+        {
+            Settings settings = target as Settings;
+
+            string newPath = EditorUtility.OpenFolderPanel("Locate Build Folder", settings.SourceBankPath, null);
+
+            if (!string.IsNullOrEmpty(newPath))
+            {
+                newPath = MakePathRelative(newPath);
+
+                if (newPath != settings.SourceBankPath)
+                {
+                    settings.SourceBankPath = newPath;
+                    EventManager.RefreshBanks();
+                    Repaint();
+                }
+            }
+
+            EditorApplication.update -= BrowseForSourceBankPath;
         }
 
         private string MakePathRelative(string path)

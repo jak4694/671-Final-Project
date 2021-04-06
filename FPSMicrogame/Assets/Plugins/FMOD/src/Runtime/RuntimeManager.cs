@@ -51,21 +51,10 @@ namespace FMODUnity
                 {
                     FMOD.RESULT initResult = FMOD.RESULT.OK; // Initialize can return an error code if it falls back to NO_SOUND, throw it as a non-cached exception
 
-                    var existing = FindObjectsOfType(typeof(RuntimeManager)) as RuntimeManager[];
-                    foreach (var iter in existing)
+                    // When reloading scripts the static instance pointer will be cleared, find the old manager and clean it up
+                    foreach (RuntimeManager manager in Resources.FindObjectsOfTypeAll<RuntimeManager>())
                     {
-                        if (existing != null)
-                        {
-                            // Older versions of the integration may have leaked the runtime manager game object into the scene,
-                            // which was then serialized. It won't have valid pointers so don't use it.
-                            if (iter.cachedPointers[0] != 0)
-                            {
-                                instance = iter;
-                                instance.studioSystem.handle = ((IntPtr)instance.cachedPointers[0]);
-                                instance.coreSystem.handle = ((IntPtr)instance.cachedPointers[1]);
-                            }
-                            DestroyImmediate(iter);
-                        }
+                        DestroyImmediate(manager.gameObject);
                     }
 
                     var gameObject = new GameObject("FMOD.UnityIntegration.RuntimeManager");
@@ -137,8 +126,7 @@ namespace FMODUnity
         FMOD.System coreSystem;
         FMOD.DSP mixerHead;
 
-        [SerializeField]
-        private long[] cachedPointers = new long[2];
+        long cachedStudioSystemHandle; // Persists across script reload for cleanup purposes
 
         struct LoadedBank
         {
@@ -147,6 +135,7 @@ namespace FMODUnity
         }
 
         Dictionary<string, LoadedBank> loadedBanks = new Dictionary<string, LoadedBank>();
+        List<string> sampleLoadRequests = new List<string>();
         Dictionary<string, uint> loadedPlugins = new Dictionary<string, uint>();
 
         // Explicit comparer to avoid issues on platforms that don't support JIT compilation
@@ -180,7 +169,6 @@ namespace FMODUnity
         FMOD.RESULT Initialize()
         {
             #if UNITY_EDITOR
-            AssemblyReloadEvents.beforeAssemblyReload += HandleBeforeAssemblyReload;
             EditorApplication.playModeStateChanged += HandlePlayModeStateChange;
             #endif // UNITY_EDITOR
 
@@ -196,7 +184,7 @@ namespace FMODUnity
             FMOD.OUTPUTTYPE outputType = FMOD.OUTPUTTYPE.AUTODETECT;
 
             FMOD.ADVANCEDSETTINGS advancedSettings = new FMOD.ADVANCEDSETTINGS();
-            advancedSettings.randomSeed = (uint)DateTime.Now.Ticks;
+            advancedSettings.randomSeed = (uint)DateTime.UtcNow.Ticks;
             #if UNITY_EDITOR || UNITY_STANDALONE
             advancedSettings.maxVorbisCodecs = realChannels;
             #elif UNITY_XBOXONE
@@ -211,7 +199,14 @@ namespace FMODUnity
 
             #if UNITY_EDITOR || DEVELOPMENT_BUILD
             result = FMOD.Debug.Initialize(fmodSettings.LoggingLevel, FMOD.DEBUG_MODE.CALLBACK, DEBUG_CALLBACK, null);
-            CheckInitResult(result, "FMOD.Debug.Initialize");
+            if(result == FMOD.RESULT.ERR_UNSUPPORTED)
+            {
+                Debug.LogWarning("[FMOD] Unable to initialize debug logging: Logging will be disabled.\nCheck the Import Settings of the FMOD libs to enable the logging library.");
+            }
+            else
+            {
+                CheckInitResult(result, "FMOD.Debug.Initialize");
+            }
             #endif
 
             FMOD.Studio.INITFLAGS studioInitFlags = FMOD.Studio.INITFLAGS.NORMAL | FMOD.Studio.INITFLAGS.DEFERRED_CALLBACKS;
@@ -224,6 +219,7 @@ namespace FMODUnity
 retry:
             result = FMOD.Studio.System.create(out studioSystem);
             CheckInitResult(result, "FMOD.Studio.System.create");
+            cachedStudioSystemHandle = (long)studioSystem.handle;
 
             result = studioSystem.getCoreSystem(out coreSystem);
             CheckInitResult(result, "FMOD.Studio.System.getCoreSystem");
@@ -398,7 +394,8 @@ retry:
                         attachedInstances[i].transform == null // destroyed game object
                         )
                     {
-                        attachedInstances.RemoveAt(i);
+                        attachedInstances[i] = attachedInstances[attachedInstances.Count - 1];
+                        attachedInstances.RemoveAt(attachedInstances.Count - 1);
                         i--;
                         continue;
                     }
@@ -501,7 +498,8 @@ retry:
             {
                 if (manager.attachedInstances[i].instance.handle == instance.handle)
                 {
-                    manager.attachedInstances.RemoveAt(i);
+                    manager.attachedInstances[i] = manager.attachedInstances[manager.attachedInstances.Count - 1];
+                    manager.attachedInstances.RemoveAt(manager.attachedInstances.Count - 1);
                     return;
                 }
             }
@@ -582,20 +580,18 @@ retry:
             GUI.DragWindow();
         }
 
-        void OnDisable()
-        {
-            // If we're being torn down for a script reload - cache the native pointers in something unity can serialize
-            cachedPointers[0] = (long)studioSystem.handle;
-            cachedPointers[1] = (long)coreSystem.handle;
-        }
-
         void OnDestroy()
         {
+            if (!studioSystem.isValid())
+            {
+                studioSystem.handle = (IntPtr)cachedStudioSystemHandle;
+            }
+
             if (studioSystem.isValid())
             {
                 studioSystem.release();
-                studioSystem.clearHandle();
             }
+
             initException = null;
             instance = null;
         }
@@ -605,20 +601,8 @@ retry:
         {
             if (instance)
             {
-                if (instance.studioSystem.isValid())
-                {
-                    instance.studioSystem.release();
-                    instance.studioSystem.clearHandle();
-                }
                 DestroyImmediate(instance.gameObject);
-                initException = null;
-                instance = null;
             }
-        }
-
-        static void HandleBeforeAssemblyReload()
-        {
-            Destroy();
         }
 
         void HandlePlayModeStateChange(PlayModeStateChange state)
@@ -693,6 +677,33 @@ retry:
             {
                 throw new BankLoadException(bankPath, loadResult);
             }
+
+            ExecuteSampleLoadRequestsIfReady();
+        }
+
+        void ExecuteSampleLoadRequestsIfReady()
+        {
+            if (sampleLoadRequests.Count > 0)
+            {
+                foreach (string bankName in sampleLoadRequests)
+                {
+                    if (!loadedBanks.ContainsKey(bankName))
+                    {
+                        // Not ready
+                        return;
+                    }
+                }
+
+                // All requested banks are loaded, so we can now load sample data
+                foreach (string bankName in sampleLoadRequests)
+                {
+                    LoadedBank loadedBank = loadedBanks[bankName];
+                    CheckInitResult(loadedBank.Bank.loadSampleData(),
+                        string.Format("Loading sample data for bank: {0}", bankName));
+                }
+
+                sampleLoadRequests.Clear();
+            }
         }
 
 #if UNITY_ANDROID || UNITY_WEBGL
@@ -735,10 +746,12 @@ retry:
                 string bankPath = RuntimeUtils.GetBankPath(bankName);
                 FMOD.RESULT loadResult;
 
-                #if !UNITY_EDITOR
-                #if UNITY_ANDROID && !UNITY_2018_OR_NEWER
-                if (!bankPath.StartsWith("file:///android_asset"))
+                #if UNITY_ANDROID && !UNITY_EDITOR 
+                if (Settings.Instance.AndroidUseOBB)
                 {
+                    #if UNITY_2018_1_OR_NEWER
+                    Instance.StartCoroutine(Instance.loadFromWeb(bankPath, bankName, loadSamples));
+                    #else
                     using (var www = new WWW(bankPath))
                     {
                         while (!www.isDone) { }
@@ -753,16 +766,16 @@ retry:
                             Instance.loadedBankRegister(loadedBank, bankPath, bankName, loadSamples, loadResult);
                         }
                     }
+                    #endif
                 }
                 else
-                #elif UNITY_ANDROID || UNITY_WEBGL
-                if (bankPath.Contains("://"))
+                #elif UNITY_WEBGL && !UNITY_EDITOR
+                if (true)
                 {
                     Instance.StartCoroutine(Instance.loadFromWeb(bankPath, bankName, loadSamples));
                 }
                 else
-                #endif // UNITY_ANDROID || UNITY_WEBGL
-                #endif // !UNITY_EDITOR
+                #endif // (UNITY_ANDROID || UNITY_WEBGL) && !UNITY_EDITOR
                 {
                     LoadedBank loadedBank = new LoadedBank();
                     loadResult = Instance.studioSystem.loadBankFile(bankPath, FMOD.Studio.LOAD_BANK_FLAGS.NORMAL, out loadedBank.Bank);
@@ -817,46 +830,56 @@ retry:
         {
             if (fmodSettings.ImportType == ImportType.StreamingAssets)
             {
-                // Always load strings bank
+                if (fmodSettings.AutomaticSampleLoading)
+                {
+                    sampleLoadRequests.AddRange(BanksToLoad(fmodSettings));
+                }
+
                 try
                 {
-                    switch (fmodSettings.BankLoadType)
+                    foreach (string bankName in BanksToLoad(fmodSettings))
                     {
-                        case BankLoadType.All:
-                            foreach (string masterBankFileName in fmodSettings.MasterBanks)
-                            {
-                                LoadBank(masterBankFileName + ".strings", fmodSettings.AutomaticSampleLoading);
-                                LoadBank(masterBankFileName, fmodSettings.AutomaticSampleLoading);
-                            }
-
-                            foreach (var bank in fmodSettings.Banks)
-                            {
-                                LoadBank(bank, fmodSettings.AutomaticSampleLoading);
-                            }
-
-                            WaitForAllLoads();
-                            break;
-                        case BankLoadType.Specified:
-                            foreach (var bank in fmodSettings.BanksToLoad)
-                            {
-                                if (!string.IsNullOrEmpty(bank))
-                                {
-                                    LoadBank(bank, fmodSettings.AutomaticSampleLoading);
-                                }
-                            }
-
-                            WaitForAllLoads();
-                            break;
-                        case BankLoadType.None:
-                            break;
-                        default:
-                            break;
+                        LoadBank(bankName);
                     }
+
+                    WaitForAllLoads();
                 }
                 catch (BankLoadException e)
                 {
                     UnityEngine.Debug.LogException(e);
                 }
+            }
+        }
+
+        private IEnumerable<string> BanksToLoad(Settings fmodSettings)
+        {
+            switch (fmodSettings.BankLoadType)
+            {
+                case BankLoadType.All:
+                    foreach (string masterBankFileName in fmodSettings.MasterBanks)
+                    {
+                        yield return masterBankFileName + ".strings";
+                        yield return masterBankFileName;
+                    }
+
+                    foreach (var bank in fmodSettings.Banks)
+                    {
+                        yield return bank;
+                    }
+                    break;
+                case BankLoadType.Specified:
+                    foreach (var bank in fmodSettings.BanksToLoad)
+                    {
+                        if (!string.IsNullOrEmpty(bank))
+                        {
+                            yield return bank;
+                        }
+                    }
+                    break;
+                case BankLoadType.None:
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -870,6 +893,7 @@ retry:
                 {
                     loadedBank.Bank.unload();
                     Instance.loadedBanks.Remove(bankName);
+                    Instance.sampleLoadRequests.Remove(bankName);
                     return;
                 }
                 Instance.loadedBanks[bankName] = loadedBank;
@@ -1115,12 +1139,12 @@ retry:
 
         public static bool HasBankLoaded(string loadedBank)
         {
-            return (instance.loadedBanks.ContainsKey(loadedBank));
+            return (Instance.loadedBanks.ContainsKey(loadedBank));
         }
 
         private void LoadPlugins(Settings fmodSettings)
         {
-            #if (UNITY_IOS || UNITY_TVOS) && !UNITY_EDITOR
+            #if (UNITY_IOS || UNITY_TVOS || UNITY_SWITCH) && !UNITY_EDITOR
             FmodUnityNativePluginInit(coreSystem.handle);
             #else
 
@@ -1193,12 +1217,15 @@ retry:
             #endif
         }
 
-        #if (UNITY_IOS || UNITY_TVOS) && !UNITY_EDITOR
+        #if (UNITY_IOS || UNITY_TVOS || UNITY_SWITCH) && !UNITY_EDITOR
         [DllImport("__Internal")]
         private static extern FMOD.RESULT FmodUnityNativePluginInit(IntPtr system);
 
+        #if !UNITY_SWITCH
         [DllImport("__Internal")]
         private static extern void RegisterSuspendCallback(Action<bool> func);
+        #endif
+
         #endif
     }
 }

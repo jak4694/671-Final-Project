@@ -81,3 +81,4 @@ MonoBehaviour:
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
+  AndroidUseOBB: 0

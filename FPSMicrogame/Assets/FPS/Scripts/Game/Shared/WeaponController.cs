@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using FMOD;
 
 namespace Unity.FPS.Game
 {
@@ -118,7 +119,8 @@ namespace Unity.FPS.Game
         public bool UnparentMuzzleFlash;
 
         [Tooltip("sound played when shooting")]
-        public AudioClip ShootSfx;
+        [FMODUnity.EventRef]
+        public string ShootSfx = "";
 
         [Tooltip("Sound played when changing to this weapon")]
         public AudioClip ChangeWeaponSfx;
@@ -316,7 +318,7 @@ namespace Unity.FPS.Game
                 {
                     if (!m_ContinuousShootAudioSource.isPlaying)
                     {
-                        m_ShootAudioSource.PlayOneShot(ShootSfx);
+                        //m_ShootAudioSource.PlayOneShot(ShootSfx);
                         m_ShootAudioSource.PlayOneShot(ContinuousShootStartSfx);
                         m_ContinuousShootAudioSource.Play();
                     }
@@ -474,9 +476,9 @@ namespace Unity.FPS.Game
             m_LastTimeShot = Time.time;
 
             // play shoot SFX
-            if (ShootSfx && !UseContinuousShootSound)
+            if (!UseContinuousShootSound)
             {
-                m_ShootAudioSource.PlayOneShot(ShootSfx);
+                FMODUnity.RuntimeManager.PlayOneShotAttached(ShootSfx, gameObject);
             }
 
             // Trigger attack animation if there is any
