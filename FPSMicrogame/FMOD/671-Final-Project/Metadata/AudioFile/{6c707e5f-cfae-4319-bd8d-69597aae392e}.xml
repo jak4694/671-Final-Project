@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{6c707e5f-cfae-4319-bd8d-69597aae392e}">
+		<property name="assetPath">
+			<value>ShotgunAttack.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.44020408163265307</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8d7a922a-1be1-428b-8477-e0af2a588c68}</destination>
+		</relationship>
+	</object>
+</objects>
