@@ -1,6 +1,7 @@
 ﻿using Unity.FPS.Game;
 using UnityEngine;
 using UnityEngine.Events;
+using FMOD;
 
 namespace Unity.FPS.Gameplay
 {
@@ -72,7 +73,8 @@ namespace Unity.FPS.Gameplay
         public float FootstepSfxFrequencyWhileSprinting = 1f;
 
         [Tooltip("Sound played for footsteps")]
-        public AudioClip FootstepSfx;
+        [FMODUnity.EventRef]
+        public string FootstepSfx = "";
 
         [Tooltip("Sound played when jumping")] public AudioClip JumpSfx;
         [Tooltip("Sound played when landing")] public AudioClip LandSfx;
@@ -345,7 +347,7 @@ namespace Unity.FPS.Gameplay
                     if (m_FootstepDistanceCounter >= 1f / chosenFootstepSfxFrequency)
                     {
                         m_FootstepDistanceCounter = 0f;
-                        AudioSource.PlayOneShot(FootstepSfx);
+                        FMODUnity.RuntimeManager.PlayOneShotAttached(FootstepSfx, gameObject);
                     }
 
                     // keep track of distance traveled for footsteps sound
