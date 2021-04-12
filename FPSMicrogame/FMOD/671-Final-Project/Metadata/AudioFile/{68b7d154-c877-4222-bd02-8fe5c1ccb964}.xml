@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.00.00">
-	<object class="AudioFile" id="{d01ad954-0f34-4a54-b831-7054eb6e4e74}">
+	<object class="AudioFile" id="{68b7d154-c877-4222-bd02-8fe5c1ccb964}">
 		<property name="assetPath">
-			<value>Footstep2.wav</value>
+			<value>JetpackLoop2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.11671201814058957</value>
+			<value>1.4809070294784581</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{8d7a922a-1be1-428b-8477-e0af2a588c68}</destination>

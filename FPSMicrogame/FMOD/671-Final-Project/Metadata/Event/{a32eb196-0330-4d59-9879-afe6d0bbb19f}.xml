@@ -101,7 +101,7 @@
 			<destination>{07fb0ff9-6068-4975-93f3-e4b31b4ae21c}</destination>
 		</relationship>
 		<relationship name="sounds">
-			<destination>{152dfea6-2db4-4856-8329-0daf99808bc4}</destination>
+			<destination>{4e032f4c-8d4c-44f3-b706-d0aed62a6a15}</destination>
 			<destination>{3a2abaac-4f1c-4bf6-adfd-15aa8ba7a6c5}</destination>
 			<destination>{064944d7-24d4-4b7f-bc38-d986b2bde3aa}</destination>
 		</relationship>
@@ -155,9 +155,9 @@
 			<value>1</value>
 		</property>
 	</object>
-	<object class="SingleSound" id="{152dfea6-2db4-4856-8329-0daf99808bc4}">
+	<object class="SingleSound" id="{4e032f4c-8d4c-44f3-b706-d0aed62a6a15}">
 		<relationship name="audioFile">
-			<destination>{22b854ff-bfda-4607-95d0-be2a6e90aa16}</destination>
+			<destination>{267122ca-51fe-492b-857d-a0c22e798432}</destination>
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{3a2abaac-4f1c-4bf6-adfd-15aa8ba7a6c5}">

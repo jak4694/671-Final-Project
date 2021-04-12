@@ -7,9 +7,6 @@ namespace Unity.FPS.Gameplay
     [RequireComponent(typeof(AudioSource))]
     public class Jetpack : MonoBehaviour
     {
-        [Header("References")] [Tooltip("Audio source for jetpack sfx")]
-        public AudioSource AudioSource;
-
         [Tooltip("Particles for jetpack vfx")] public ParticleSystem[] JetpackVfx;
 
         [Header("Parameters")] [Tooltip("Whether the jetpack is unlocked at the begining or not")]
@@ -36,7 +33,10 @@ namespace Unity.FPS.Gameplay
         public float RefillDelay = 1f;
 
         [Header("Audio")] [Tooltip("Sound played when using the jetpack")]
-        public AudioClip JetpackSfx;
+        [FMODUnity.EventRef]
+        public string JetpackSfx = "";
+        private FMOD.Studio.EventInstance jetpackEvent;
+        private bool playingJetpackSound = false;
 
         bool m_CanUseJetpack;
         PlayerCharacterController m_PlayerCharacterController;
@@ -53,6 +53,8 @@ namespace Unity.FPS.Gameplay
 
         void Start()
         {
+            jetpackEvent = FMODUnity.RuntimeManager.CreateInstance(JetpackSfx);
+
             IsJetpackUnlocked = IsJetpackUnlockedAtStart;
 
             m_PlayerCharacterController = GetComponent<PlayerCharacterController>();
@@ -63,9 +65,6 @@ namespace Unity.FPS.Gameplay
             DebugUtility.HandleErrorIfNullGetComponent<PlayerInputHandler, Jetpack>(m_InputHandler, this, gameObject);
 
             CurrentFillRatio = 1f;
-
-            AudioSource.clip = JetpackSfx;
-            AudioSource.loop = true;
         }
 
         void Update()
@@ -112,8 +111,11 @@ namespace Unity.FPS.Gameplay
                     emissionModulesVfx.enabled = true;
                 }
 
-                if (!AudioSource.isPlaying)
-                    AudioSource.Play();
+                if (!playingJetpackSound)
+                {
+                    jetpackEvent.start();
+                    playingJetpackSound = true;
+                }
             }
             else
             {
@@ -135,8 +137,11 @@ namespace Unity.FPS.Gameplay
                 // keeps the ratio between 0 and 1
                 CurrentFillRatio = Mathf.Clamp01(CurrentFillRatio);
 
-                if (AudioSource.isPlaying)
-                    AudioSource.Stop();
+                if (playingJetpackSound)
+                {
+                    jetpackEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    playingJetpackSound = false;
+                }
             }
         }
 
