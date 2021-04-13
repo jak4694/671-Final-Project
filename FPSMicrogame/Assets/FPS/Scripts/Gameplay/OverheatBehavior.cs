@@ -33,14 +33,13 @@ namespace Unity.FPS.Gameplay
         public Material OverheatingMaterial;
 
         [Header("Sound")] [Tooltip("Sound played when a cell are cooling")]
-        public AudioClip CoolingCellsSound;
-
-        [Tooltip("Curve for ammo to volume ratio")]
-        public AnimationCurve AmmoToVolumeRatioCurve;
+        [FMODUnity.EventRef]
+        public string CoolingCellsSound = "";
+        private FMOD.Studio.EventInstance coolingEvent;
+        private bool coolingSoundPlaying = false;
 
 
         WeaponController m_Weapon;
-        AudioSource m_AudioSource;
         List<RendererIndexData> m_OverheatingRenderersData;
         MaterialPropertyBlock m_OverheatMaterialPropertyBlock;
         float m_LastAmmoRatio;
@@ -48,6 +47,8 @@ namespace Unity.FPS.Gameplay
 
         void Awake()
         {
+            coolingEvent = FMODUnity.RuntimeManager.CreateInstance(CoolingCellsSound);
+
             var emissionModule = SteamVfx.emission;
             emissionModule.rateOverTimeMultiplier = 0f;
 
@@ -90,24 +91,22 @@ namespace Unity.FPS.Gameplay
             }
 
             // cooling sound
-            if (CoolingCellsSound)
+            if (!coolingSoundPlaying
+                && currentAmmoRatio != 1
+                && m_Weapon.IsWeaponActive
+                && m_Weapon.IsCooling)
             {
-                if (!m_AudioSource.isPlaying
-                    && currentAmmoRatio != 1
-                    && m_Weapon.IsWeaponActive
-                    && m_Weapon.IsCooling)
-                {
-                    m_AudioSource.Play();
-                }
-                else if (m_AudioSource.isPlaying
-                         && (currentAmmoRatio == 1 || !m_Weapon.IsWeaponActive || !m_Weapon.IsCooling))
-                {
-                    m_AudioSource.Stop();
-                    return;
-                }
-
-                m_AudioSource.volume = AmmoToVolumeRatioCurve.Evaluate(1 - currentAmmoRatio);
+                coolingEvent.start();
+                coolingSoundPlaying = true;
             }
+            else if (coolingSoundPlaying
+                        && (currentAmmoRatio == 1 || !m_Weapon.IsWeaponActive || !m_Weapon.IsCooling))
+            {
+                coolingEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                coolingSoundPlaying = false;
+                return;
+            }
+            coolingEvent.setParameterByName("AmmoRatio", 1 - currentAmmoRatio);
 
             m_LastAmmoRatio = currentAmmoRatio;
         }

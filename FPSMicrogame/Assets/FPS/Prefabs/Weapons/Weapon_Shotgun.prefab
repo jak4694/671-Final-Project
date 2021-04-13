@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 2225486910712267856}
   - component: {fileID: 8323776800172828795}
   - component: {fileID: 8745372878802205896}
+  - component: {fileID: 5402265119353786667}
   - component: {fileID: 8090847488450120274}
   m_Layer: 10
   m_Name: Weapon_Shotgun
@@ -207,6 +208,52 @@ MonoBehaviour:
   - {fileID: 6867164318175680849}
   FuelCellUsedPosition: {x: 0, y: 0.1, z: 0}
   FuelCellUnusedPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &5402265119353786667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225486910712267859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a2833c2faa8a3439fd04522cf5733c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SteamVfx: {fileID: 1818117475793052272, guid: b318fabc73446b746a1005cede0c4ceb,
+    type: 3}
+  SteamVfxEmissionRateMax: 8
+  OverheatGradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 0.25493035, b: 3.482202, a: 1}
+    key1: {r: 0, g: 4.563668, b: 5.2164745, a: 1}
+    key2: {r: 8, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  OverheatingMaterial: {fileID: 2100000, guid: 0c55f53a7bb3c354ababeb18b89c2fce, type: 2}
+  CoolingCellsSound: event:/WeaponCooldown
 --- !u!82 &8090847488450120274
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{24b4f254-f0c3-4932-93ad-e5028f899049}">
+		<property name="name">
+			<value>AmmoRatio</value>
+		</property>
+		<relationship name="folder">
+			<destination>{0d60a153-923a-4c3e-a5d0-492b8f22ba17}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{ad07f989-8270-4f2a-b81d-aa56d496da56}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{ad07f989-8270-4f2a-b81d-aa56d496da56}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
