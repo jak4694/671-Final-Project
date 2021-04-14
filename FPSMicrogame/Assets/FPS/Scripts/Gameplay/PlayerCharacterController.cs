@@ -77,7 +77,9 @@ namespace Unity.FPS.Gameplay
         public string FootstepSfx = "";
 
         [Tooltip("Sound played when jumping")] public AudioClip JumpSfx;
-        [Tooltip("Sound played when landing")] public AudioClip LandSfx;
+        [Tooltip("Sound played when landing")]
+        [FMODUnity.EventRef]
+        public string LandSfx = "";
 
         [Tooltip("Sound played when taking damage froma fall")]
         public AudioClip FallDamageSfx;
@@ -203,7 +205,7 @@ namespace Unity.FPS.Gameplay
                 else
                 {
                     // land SFX
-                    AudioSource.PlayOneShot(LandSfx);
+                    FMODUnity.RuntimeManager.PlayOneShotAttached(LandSfx, gameObject);
                 }
             }
 

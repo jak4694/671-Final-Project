@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.00.00">
-	<object class="AudioFile" id="{3cf27e57-206b-4377-80f6-56408d9da19e}">
+	<object class="AudioFile" id="{eb6dbcdb-4290-444c-a8f8-9dc2fbe81ac4}">
 		<property name="assetPath">
-			<value>Heartbeat2.wav</value>
+			<value>JetpackStart.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.66639455782312929</value>
+			<value>0.36809523809523809</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{8d7a922a-1be1-428b-8477-e0af2a588c68}</destination>
