@@ -82,7 +82,8 @@ namespace Unity.FPS.Gameplay
         public string LandSfx = "";
 
         [Tooltip("Sound played when taking damage froma fall")]
-        public AudioClip FallDamageSfx;
+        [FMODUnity.EventRef]
+        public string FallDamageSfx = "";
 
         [Header("Fall Damage")]
         [Tooltip("Whether the player will recieve damage when hitting the ground at high speed")]
@@ -200,7 +201,7 @@ namespace Unity.FPS.Gameplay
                     m_Health.TakeDamage(dmgFromFall, null);
 
                     // fall damage SFX
-                    AudioSource.PlayOneShot(FallDamageSfx);
+                    FMODUnity.RuntimeManager.PlayOneShotAttached(FallDamageSfx, gameObject);
                 }
                 else
                 {
