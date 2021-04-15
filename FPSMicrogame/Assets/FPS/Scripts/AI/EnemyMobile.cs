@@ -1,5 +1,6 @@
 ﻿using Unity.FPS.Game;
 using UnityEngine;
+using FMODUnity;
 
 namespace Unity.FPS.AI
 {
@@ -25,12 +26,10 @@ namespace Unity.FPS.AI
         public ParticleSystem[] OnDetectVfx;
         public AudioClip OnDetectSfx;
 
-        [Header("Sound")] public AudioClip MovementSound;
-        public MinMaxFloat PitchDistortionMovementSpeed;
+        //public MinMaxFloat PitchDistortionMovementSpeed;
 
         public AIState AiState { get; private set; }
         EnemyController m_EnemyController;
-        AudioSource m_AudioSource;
 
         const string k_AnimMoveSpeedParameter = "MoveSpeed";
         const string k_AnimAttackParameter = "Attack";
@@ -48,15 +47,23 @@ namespace Unity.FPS.AI
             m_EnemyController.onLostTarget += OnLostTarget;
             m_EnemyController.SetPathDestinationToClosestNode();
             m_EnemyController.onDamaged += OnDamaged;
+            GetComponent<Health>().OnDie += OnDeath;
 
             // Start patrolling
             AiState = AIState.Patrol;
 
             // adding a audio source to play the movement sound on it
-            m_AudioSource = GetComponent<AudioSource>();
+            /*m_AudioSource = GetComponent<AudioSource>();
             DebugUtility.HandleErrorIfNullGetComponent<AudioSource, EnemyMobile>(m_AudioSource, this, gameObject);
             m_AudioSource.clip = MovementSound;
-            m_AudioSource.Play();
+            m_AudioSource.Play();*/
+            
+        }
+
+        //Stop the movement noise on death
+        private void OnDeath()
+        {
+            GetComponent<FMODUnity.StudioEventEmitter>().Stop();
         }
 
         void Update()
@@ -70,8 +77,8 @@ namespace Unity.FPS.AI
             Animator.SetFloat(k_AnimMoveSpeedParameter, moveSpeed);
 
             // changing the pitch of the movement sound depending on the movement speed
-            m_AudioSource.pitch = Mathf.Lerp(PitchDistortionMovementSpeed.Min, PitchDistortionMovementSpeed.Max,
-                moveSpeed / m_EnemyController.NavMeshAgent.speed);
+            //m_AudioSource.pitch = Mathf.Lerp(PitchDistortionMovementSpeed.Min, PitchDistortionMovementSpeed.Max,
+            //    moveSpeed / m_EnemyController.NavMeshAgent.speed);
         }
 
         void UpdateAiStateTransitions()

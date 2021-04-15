@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{65df4e75-982e-4ad2-99d0-f74f6fa783d2}">
+		<property name="assetPath">
+			<value>Drone Sound 2.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>17.862154195011339</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8d7a922a-1be1-428b-8477-e0af2a588c68}</destination>
+		</relationship>
+	</object>
+</objects>
