@@ -123,7 +123,8 @@ namespace Unity.FPS.Game
         public string ShootSfx = "";
 
         [Tooltip("Sound played when changing to this weapon")]
-        public AudioClip ChangeWeaponSfx;
+        [FMODUnity.EventRef]
+        public string ChangeWeaponSfx = "";
 
         [Tooltip("Continuous Shooting Sound")] public bool UseContinuousShootSound = false;
         public AudioClip ContinuousShootStartSfx;
@@ -335,9 +336,9 @@ namespace Unity.FPS.Game
         {
             WeaponRoot.SetActive(show);
 
-            if (show && ChangeWeaponSfx)
+            if (show)
             {
-                m_ShootAudioSource.PlayOneShot(ChangeWeaponSfx);
+                FMODUnity.RuntimeManager.PlayOneShotAttached(ChangeWeaponSfx, gameObject);
             }
 
             IsWeaponActive = show;

@@ -183,7 +183,7 @@ MonoBehaviour:
     type: 3}
   UnparentMuzzleFlash: 0
   ShootSfx: event:/ShotgunAttack
-  ChangeWeaponSfx: {fileID: 8300000, guid: 7b83d61917ac1224f942a0609b1221f2, type: 3}
+  ChangeWeaponSfx: event:/WeaponSwap
   UseContinuousShootSound: 0
   ContinuousShootStartSfx: {fileID: 0}
   ContinuousShootLoopSfx: {fileID: 0}
