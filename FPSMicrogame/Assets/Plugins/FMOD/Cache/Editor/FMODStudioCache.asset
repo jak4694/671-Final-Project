@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8232753730200751808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-8229814687756656855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,6 +51,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-7857863068243175987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapon/WeaponSwap
+  m_EditorClassIdentifier: 
+  Path: event:/Weapon/WeaponSwap
+  guid: 0695058185c29643939fa566d9d14e51
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 171
 --- !u!114 &-7579031360781460160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,8 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Footsteps
   guid: 96b12ea33003594d9879afe6d0bbb19f
-  Banks:
-  - {fileID: 7319996951465458705}
+  Banks: []
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -57,6 +96,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 208
+--- !u!114 &-7440828790457399136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-7292691977327136560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,8 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Landing
   guid: 6c9e3c00af196d4195d1d6cdbd9b63dd
-  Banks:
-  - {fileID: 7319996951465458705}
+  Banks: []
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -94,8 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/BlasterAttack
   guid: 3311d10d69ebab4b82fe2e0c0ac55ebb
-  Banks:
-  - {fileID: 7319996951465458705}
+  Banks: []
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -120,6 +174,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-5801572678572676377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-5710095650256458588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,8 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/WeaponSwap
   guid: 0695058185c29643939fa566d9d14e51
-  Banks:
-  - {fileID: 7319996951465458705}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -143,6 +213,86 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 171
+--- !u!114 &-5355217985064295199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Hoverbot/HoverbotMoving
+  m_EditorClassIdentifier: 
+  Path: event:/Hoverbot/HoverbotMoving
+  guid: c13bbe5329e0e04b9587a20520493516
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 19947
+--- !u!114 &-5233806997393192462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-5197203193732828538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-5156655214683327457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapon/ShotgunAttack
+  m_EditorClassIdentifier: 
+  Path: event:/Weapon/ShotgunAttack
+  guid: 961e3b552ed36d439b4f1cfa359a0995
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 440
 --- !u!114 &-4788609313173150616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,8 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Jetpack
   guid: 41f90d9919370444847506b2b4aa9136
-  Banks:
-  - {fileID: 7319996951465458705}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -234,6 +383,46 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-3860474185782095582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-3803132274512175340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Jetpack
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Jetpack
+  guid: 41f90d9919370444847506b2b4aa9136
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3940
 --- !u!114 &-3791874339981863449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +457,63 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-3315036231862325392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-3281630502061911144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Jump
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Jump
+  guid: 0b6740acbe53ea4da3d170520ac21c20
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 135
+--- !u!114 &-2231370351433458988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-1640949310131008868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +531,30 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-923749063341880341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapon/WeaponCooldown
+  m_EditorClassIdentifier: 
+  Path: event:/Weapon/WeaponCooldown
+  guid: 800089944e91864c890a22c954b9ebdf
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 3926617339287325054}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2569
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,22 +571,24 @@ MonoBehaviour:
   - {fileID: 966538123456762776}
   - {fileID: 7319996951465458705}
   EditorEvents:
-  - {fileID: -6271155806963051762}
-  - {fileID: 3574067394421184520}
-  - {fileID: -7579031360781460160}
-  - {fileID: -4683949949503104281}
-  - {fileID: 2638369751774315566}
-  - {fileID: -7292691977327136560}
-  - {fileID: 4377378094060324865}
-  - {fileID: 440199224354418308}
-  - {fileID: 1522516798045542452}
-  - {fileID: -5710095650256458588}
+  - {fileID: -7857863068243175987}
+  - {fileID: 2915989326916627566}
+  - {fileID: 1870982776169533232}
+  - {fileID: -3803132274512175340}
+  - {fileID: 4843831752170440178}
+  - {fileID: -923749063341880341}
+  - {fileID: 5971797243450476513}
+  - {fileID: -5156655214683327457}
+  - {fileID: 7335825647942995547}
+  - {fileID: -5355217985064295199}
+  - {fileID: -3281630502061911144}
+  - {fileID: 1931110954327201585}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7319996951465458705}
   StringsBanks:
   - {fileID: 966538123456762776}
-  stringsBankWriteTime: 637540389558834098
+  stringsBankWriteTime: 637541206662122645
   cacheVersion: 4
 --- !u!114 &440199224354418308
 MonoBehaviour:
@@ -332,8 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Ambience
   guid: 8448d57579bb0c42bb4477452f14d398
-  Banks:
-  - {fileID: 7319996951465458705}
+  Banks: []
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -373,11 +644,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/671-Final-Project/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637540389558834098
+  lastModified: 637541206662122645
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1278
+    Value: 1490
   Exists: 1
 --- !u!114 &1522516798045542452
 MonoBehaviour:
@@ -393,8 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/HoverbotMoving
   guid: c13bbe5329e0e04b9587a20520493516
-  Banks:
-  - {fileID: 7319996951465458705}
+  Banks: []
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -419,6 +689,52 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &1870982776169533232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapon/BlasterAttack
+  m_EditorClassIdentifier: 
+  Path: event:/Weapon/BlasterAttack
+  guid: 3311d10d69ebab4b82fe2e0c0ac55ebb
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 242
+--- !u!114 &1931110954327201585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Turret/TurretAlert
+  m_EditorClassIdentifier: 
+  Path: event:/Turret/TurretAlert
+  guid: 689030d51f870e4782078cff3ff8e5cc
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 85
+  Length: 756
 --- !u!114 &2098760033772975135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,8 +766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/WeaponCooldown
   guid: 800089944e91864c890a22c954b9ebdf
-  Banks:
-  - {fileID: 7319996951465458705}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -494,6 +809,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &2915989326916627566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/HeavyLanding
+  m_EditorClassIdentifier: 
+  Path: event:/Player/HeavyLanding
+  guid: 203b2e219cdcd442b9509210e0bfa9db
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 187
 --- !u!114 &3174270191396907473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,8 +863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/ShotgunAttack
   guid: 961e3b552ed36d439b4f1cfa359a0995
-  Banks:
-  - {fileID: 7319996951465458705}
+  Banks: []
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -534,6 +871,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 440
+--- !u!114 &3926617339287325054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &4377378094060324865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +902,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/HeavyLanding
   guid: 203b2e219cdcd442b9509210e0bfa9db
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 187
+--- !u!114 &4715097172936872668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &4843831752170440178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Landing
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Landing
+  guid: 6c9e3c00af196d4195d1d6cdbd9b63dd
   Banks:
   - {fileID: 7319996951465458705}
   IsStream: 0
@@ -556,7 +949,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 187
+  Length: 136
 --- !u!114 &4905390335492154244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,6 +967,57 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &5016385080690358513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &5323247306979506771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &5335195246287736842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &5485043330299612087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +1052,30 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &5971797243450476513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Ambience
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Ambience
+  guid: 8448d57579bb0c42bb4477452f14d398
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 5016385080690358513}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 34137
 --- !u!114 &7319996951465458705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,10 +1090,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/671-Final-Project/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637540389558784228
+  lastModified: 637541206662052833
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &7335825647942995547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Footsteps
+  guid: 96b12ea33003594d9879afe6d0bbb19f
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 208
 --- !u!114 &8355977822801686476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,3 +1151,20 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &8779223918361537024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0

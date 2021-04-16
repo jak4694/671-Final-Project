@@ -76,7 +76,10 @@ namespace Unity.FPS.Gameplay
         [FMODUnity.EventRef]
         public string FootstepSfx = "";
 
-        [Tooltip("Sound played when jumping")] public AudioClip JumpSfx;
+        [Tooltip("Sound played when jumping")]
+        [FMODUnity.EventRef]
+        public string JumpSfx = "";
+        
         [Tooltip("Sound played when landing")]
         [FMODUnity.EventRef]
         public string LandSfx = "";
@@ -332,7 +335,7 @@ namespace Unity.FPS.Gameplay
                             CharacterVelocity += Vector3.up * JumpForce;
 
                             // play sound
-                            AudioSource.PlayOneShot(JumpSfx);
+                            FMODUnity.RuntimeManager.PlayOneShotAttached(JumpSfx, gameObject);
 
                             // remember last time we jumped because we need to prevent snapping to ground for a short time
                             m_LastTimeJumped = Time.time;

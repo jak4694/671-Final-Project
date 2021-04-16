@@ -181,10 +181,6 @@ MonoBehaviour:
   - {fileID: 1407167163009738010}
   - {fileID: 8934028655093144013}
   OnDetectSfx: {fileID: 8300000, guid: 25722734eeccba042a18e26e376ca542, type: 3}
-  MovementSound: event:/HoverbotMoving
-  PitchDistortionMovementSpeed:
-    Min: 1
-    Max: 1.5
 --- !u!114 &6370966072896210225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/HoverbotMoving
+  Event: event:/Hoverbot/HoverbotMoving
   PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
@@ -823,7 +819,7 @@ MonoBehaviour:
   MuzzleFlashPrefab: {fileID: 3930201484039205849}
   UnparentMuzzleFlash: 0
   ShootSfx: 
-  ChangeWeaponSfx: {fileID: 0}
+  ChangeWeaponSfx: 
   UseContinuousShootSound: 0
   ContinuousShootStartSfx: {fileID: 0}
   ContinuousShootLoopSfx: {fileID: 0}
