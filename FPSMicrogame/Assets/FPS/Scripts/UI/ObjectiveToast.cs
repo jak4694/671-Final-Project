@@ -31,7 +31,8 @@ namespace Unity.FPS.UI
         [Tooltip("Duration of the fade out")] public float FadeOutDuration = 2f;
 
         [Header("Sound")] [Tooltip("Sound that will be player on initialization")]
-        public AudioClip InitSound;
+        [FMODUnity.EventRef]
+        public string InitSound = "";
 
         [Tooltip("Sound that will be player on completion")]
         public AudioClip CompletedSound;
@@ -110,7 +111,7 @@ namespace Unity.FPS.UI
                     // end the fade in
                     m_IsFadingIn = false;
 
-                    PlaySound(InitSound);
+                    FMODUnity.RuntimeManager.PlayOneShot(InitSound);
                 }
             }
 

@@ -551,7 +551,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 3926617339287325054}
+  - {fileID: 2899724754898594631}
   MinDistance: 0
   MaxDistance: 0
   Length: 2569
@@ -583,12 +583,13 @@ MonoBehaviour:
   - {fileID: -5355217985064295199}
   - {fileID: -3281630502061911144}
   - {fileID: 1931110954327201585}
+  - {fileID: 5830845432558766988}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7319996951465458705}
   StringsBanks:
   - {fileID: 966538123456762776}
-  stringsBankWriteTime: 637541206662122645
+  stringsBankWriteTime: 637541219696119597
   cacheVersion: 4
 --- !u!114 &440199224354418308
 MonoBehaviour:
@@ -630,6 +631,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &561145834968432322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &966538123456762776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,11 +662,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/671-Final-Project/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637541206662122645
+  lastModified: 637541219696119597
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1490
+    Value: 1578
   Exists: 1
 --- !u!114 &1522516798045542452
 MonoBehaviour:
@@ -809,6 +827,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &2899724754898594631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &2915989326916627566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,7 +922,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &4377378094060324865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,7 +1018,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &5323247306979506771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,6 +1070,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &5830845432558766988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/ObjectiveNotification
+  m_EditorClassIdentifier: 
+  Path: event:/UI/ObjectiveNotification
+  guid: 7eea6bfb4837a04f86f46768465b456a
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 179
 --- !u!114 &5944203569836385099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,7 +1130,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 5016385080690358513}
+  - {fileID: 561145834968432322}
   MinDistance: 0
   MaxDistance: 0
   Length: 34137
@@ -1090,7 +1148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/671-Final-Project/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637541206662052833
+  lastModified: 637541219696059747
   LoadResult: 0
   FileSizes: []
   Exists: 1
