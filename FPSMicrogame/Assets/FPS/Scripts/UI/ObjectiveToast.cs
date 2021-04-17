@@ -35,7 +35,8 @@ namespace Unity.FPS.UI
         public string InitSound = "";
 
         [Tooltip("Sound that will be player on completion")]
-        public AudioClip CompletedSound;
+        [FMODUnity.EventRef]
+        public string CompletedSound = "";
 
         [Header("Movement")] [Tooltip("Time it takes to move in the screen")]
         public float MoveInDuration = 0.5f;
@@ -84,7 +85,7 @@ namespace Unity.FPS.UI
             m_IsMovingIn = false;
 
             // if a sound was set, play it
-            PlaySound(CompletedSound);
+            FMODUnity.RuntimeManager.PlayOneShot(CompletedSound);
 
             // start the fade out
             m_IsFadingOut = true;

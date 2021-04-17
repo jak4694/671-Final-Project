@@ -619,7 +619,7 @@ MonoBehaviour:
   FadeInDuration: 0.5
   FadeOutDuration: 2
   InitSound: event:/UI/ObjectiveNotification
-  CompletedSound: {fileID: 8300000, guid: 3f01be6994a0ab6448a945dbdd9b3cda, type: 3}
+  CompletedSound: event:/UI/ObjectiveComplete
   MoveInDuration: 0.5
   MoveInCurve:
     serializedVersion: 2
