@@ -255,7 +255,7 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   FlashOnHitDuration: 0.125
-  DamageTick: {fileID: 8300000, guid: a7fae22399a6e1d448dc0dd2210f1dac, type: 3}
+  DamageTick: 
   DeathVfx: {fileID: 8950624839484268180, guid: 45ce85b82008be84287f2c7e5bf07647,
     type: 3}
   DeathVfxSpawnPoint: {fileID: 7886326314632062837}
@@ -711,7 +711,7 @@ MonoBehaviour:
   WeaponAnimator: {fileID: 0}
   MuzzleFlashPrefab: {fileID: 638502610521960261}
   UnparentMuzzleFlash: 0
-  ShootSfx: 
+  ShootSfx: event:/Turret/TurretAttack
   ChangeWeaponSfx: 
   UseContinuousShootSound: 0
   ContinuousShootStartSfx: {fileID: 0}

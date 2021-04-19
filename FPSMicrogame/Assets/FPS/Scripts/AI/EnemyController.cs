@@ -61,7 +61,8 @@ namespace Unity.FPS.AI
         public float FlashOnHitDuration = 0.5f;
 
         [Header("Sounds")] [Tooltip("Sound played when recieving damages")]
-        public AudioClip DamageTick;
+        [FMODUnity.EventRef]
+        public string DamageTick = "";
 
         [Header("VFX")] [Tooltip("The VFX prefab spawned when the enemy dies")]
         public GameObject DeathVfx;
@@ -348,11 +349,13 @@ namespace Unity.FPS.AI
                 
                 onDamaged?.Invoke();
                 m_LastTimeDamaged = Time.time;
-            
+
                 // play the damage tick sound
-                if (DamageTick && !m_WasDamagedThisFrame)
-                    //AudioUtility.CreateSFX(DamageTick, transform.position, AudioUtility.AudioGroups.DamageTick, 0f);
-            
+                if (!m_WasDamagedThisFrame)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot(DamageTick);
+                }
+
                 m_WasDamagedThisFrame = true;
             }
         }
