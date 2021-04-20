@@ -88,6 +88,9 @@ namespace Unity.FPS.Gameplay
         [FMODUnity.EventRef]
         public string FallDamageSfx = "";
 
+        [FMODUnity.EventRef]
+        public string DeathSfx = "";
+
         [Header("Fall Damage")]
         [Tooltip("Whether the player will recieve damage when hitting the ground at high speed")]
         public bool RecievesFallDamage;
@@ -230,6 +233,8 @@ namespace Unity.FPS.Gameplay
 
             // Tell the weapons manager to switch to a non-existing weapon in order to lower the weapon
             m_WeaponsManager.SwitchToWeaponIndex(-1, true);
+
+            FMODUnity.RuntimeManager.PlayOneShot(DeathSfx);
 
             EventManager.Broadcast(Events.PlayerDeathEvent);
         }
