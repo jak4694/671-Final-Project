@@ -180,7 +180,7 @@ MonoBehaviour:
   - {fileID: 6104096765092005263}
   - {fileID: 1407167163009738010}
   - {fileID: 8934028655093144013}
-  OnDetectSfx: {fileID: 8300000, guid: 25722734eeccba042a18e26e376ca542, type: 3}
+  OnDetectSfx: event:/Hoverbot/HoverbotAlert
 --- !u!114 &6370966072896210225
 MonoBehaviour:
   m_ObjectHideFlags: 0

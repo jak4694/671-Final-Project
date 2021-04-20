@@ -1,6 +1,5 @@
 ﻿using Unity.FPS.Game;
 using UnityEngine;
-using FMODUnity;
 
 namespace Unity.FPS.AI
 {
@@ -24,7 +23,8 @@ namespace Unity.FPS.AI
         public ParticleSystem[] RandomHitSparks;
 
         public ParticleSystem[] OnDetectVfx;
-        public AudioClip OnDetectSfx;
+        [FMODUnity.EventRef]
+        public string OnDetectSfx = "";
 
         //public MinMaxFloat PitchDistortionMovementSpeed;
 
@@ -155,10 +155,7 @@ namespace Unity.FPS.AI
                 OnDetectVfx[i].Play();
             }
 
-            if (OnDetectSfx)
-            {
-                //AudioUtility.CreateSFX(OnDetectSfx, transform.position, AudioUtility.AudioGroups.EnemyDetection, 1f);
-            }
+            FMODUnity.RuntimeManager.PlayOneShotAttached(OnDetectSfx, gameObject);
 
             Animator.SetBool(k_AnimAlertedParameter, true);
         }
