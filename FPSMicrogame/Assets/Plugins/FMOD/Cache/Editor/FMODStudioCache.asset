@@ -914,10 +914,44 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 9037264702697908843}
+  - {fileID: -505433464136401415}
   MinDistance: 0
   MaxDistance: 0
   Length: 2569
+--- !u!114 &-786973328848209299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-505433464136401415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-397242008739244176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,12 +1039,13 @@ MonoBehaviour:
   - {fileID: 436398796588872485}
   - {fileID: 3653094794426725747}
   - {fileID: 7017589283134076575}
+  - {fileID: 7590176892363708837}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7319996951465458705}
   StringsBanks:
   - {fileID: 966538123456762776}
-  stringsBankWriteTime: 637544609558222498
+  stringsBankWriteTime: 637544654275383930
   cacheVersion: 4
 --- !u!114 &395445836095800212
 MonoBehaviour:
@@ -1128,11 +1163,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/671-Final-Project/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637544609558222498
+  lastModified: 637544654275383930
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1918
+    Value: 1956
   Exists: 1
 --- !u!114 &1522516798045542452
 MonoBehaviour:
@@ -1287,6 +1322,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &2615718911461438882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &2638369751774315566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1530,7 +1582,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &3926617339287325054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,7 +1881,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 3881699364375616763}
+  - {fileID: 2615718911461438882}
   MinDistance: 0
   MaxDistance: 0
   Length: 34137
@@ -1887,7 +1939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/671-Final-Project/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637544609558152690
+  lastModified: 637544654275324089
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1937,6 +1989,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 90
   Length: 257
+--- !u!114 &7590176892363708837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapon/WeaponDamage
+  m_EditorClassIdentifier: 
+  Path: event:/Weapon/WeaponDamage
+  guid: 33965db3da1ccf42888250822fe52e6c
+  Banks:
+  - {fileID: 7319996951465458705}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 83
 --- !u!114 &7724499829503615814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2005,6 +2080,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &8477792233025891206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &8541570075887193870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2095,4 +2187,4 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
