@@ -91,6 +91,10 @@ namespace Unity.FPS.Gameplay
         [FMODUnity.EventRef]
         public string DeathSfx = "";
 
+        [FMODUnity.EventRef]
+        public string DamageSfx = "";
+        private bool damageFromFall = false;
+
         public FMODUnity.StudioEventEmitter lowHealth;
 
         [Header("Fall Damage")]
@@ -176,6 +180,7 @@ namespace Unity.FPS.Gameplay
 
             m_Controller.enableOverlapRecovery = true;
 
+            m_Health.OnDamaged += OnDamaged;
             m_Health.OnDie += OnDie;
 
             // force the crouch state to false when starting
@@ -206,6 +211,7 @@ namespace Unity.FPS.Gameplay
                 if (RecievesFallDamage && fallSpeedRatio > 0f)
                 {
                     float dmgFromFall = Mathf.Lerp(FallDamageAtMinSpeed, FallDamageAtMaxSpeed, fallSpeedRatio);
+                    damageFromFall = true;
                     m_Health.TakeDamage(dmgFromFall, null);
 
                     // fall damage SFX
@@ -229,6 +235,20 @@ namespace Unity.FPS.Gameplay
             HandleCharacterMovement();
 
             lowHealth.SetParameter("Health", m_Health.CurrentHealth / m_Health.MaxHealth);
+        }
+
+        private void OnDamaged(float damage, GameObject damageSource)
+        {
+            //Ignore playing a sound for fall damage
+            if(damageFromFall)
+            {
+                damageFromFall = false;
+                return;
+            }
+            if(m_Health.CurrentHealth > 0)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot(DamageSfx);
+            }
         }
 
         void OnDie()
