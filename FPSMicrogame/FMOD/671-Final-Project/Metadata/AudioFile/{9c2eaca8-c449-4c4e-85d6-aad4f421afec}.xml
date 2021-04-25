@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{9c2eaca8-c449-4c4e-85d6-aad4f421afec}">
+		<property name="assetPath">
+			<value>UIHover2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.065555555555555561</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8d7a922a-1be1-428b-8477-e0af2a588c68}</destination>
+		</relationship>
+	</object>
+</objects>

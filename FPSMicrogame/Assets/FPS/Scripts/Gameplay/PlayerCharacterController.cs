@@ -91,6 +91,8 @@ namespace Unity.FPS.Gameplay
         [FMODUnity.EventRef]
         public string DeathSfx = "";
 
+        public FMODUnity.StudioEventEmitter lowHealth;
+
         [Header("Fall Damage")]
         [Tooltip("Whether the player will recieve damage when hitting the ground at high speed")]
         public bool RecievesFallDamage;
@@ -225,6 +227,8 @@ namespace Unity.FPS.Gameplay
             UpdateCharacterHeight(false);
 
             HandleCharacterMovement();
+
+            lowHealth.SetParameter("Health", m_Health.CurrentHealth / m_Health.MaxHealth);
         }
 
         void OnDie()
@@ -235,6 +239,8 @@ namespace Unity.FPS.Gameplay
             m_WeaponsManager.SwitchToWeaponIndex(-1, true);
 
             FMODUnity.RuntimeManager.PlayOneShot(DeathSfx);
+
+            lowHealth.Stop();
 
             EventManager.Broadcast(Events.PlayerDeathEvent);
         }
