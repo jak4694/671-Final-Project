@@ -15,6 +15,7 @@ public class MenuAudioHandler : MonoBehaviour
 
     [FMODUnity.EventRef]
     public string PauseMenuSnapshot = "";
+    public bool useSnapshot = true;
     private FMOD.Studio.EventInstance pauseSnapshot;
 
     private void Awake()
@@ -24,12 +25,18 @@ public class MenuAudioHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        pauseSnapshot.start();
+        if(useSnapshot)
+        {
+            pauseSnapshot.start();
+        }
     }
 
     private void OnDisable()
     {
-        pauseSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        if(useSnapshot)
+        {
+            pauseSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
     }
 
     public void PlayClickSound()
