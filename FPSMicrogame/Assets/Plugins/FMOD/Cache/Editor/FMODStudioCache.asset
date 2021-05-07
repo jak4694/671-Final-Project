@@ -322,6 +322,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &-6635776313669152781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Outside
+  m_EditorClassIdentifier: 
+  Name: Outside
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-6583938394846942230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,7 +718,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-4941791557925272415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,7 +859,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-4033791217415145384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,7 +1319,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1376779516841559522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1374,7 +1391,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -1377064706423708172}
+  - {fileID: 2471309812833751772}
   MinDistance: 0
   MaxDistance: 0
   Length: 2569
@@ -1563,7 +1580,7 @@ MonoBehaviour:
   - {fileID: 7319996951465458705}
   StringsBanks:
   - {fileID: 966538123456762776}
-  stringsBankWriteTime: 637549866190479478
+  stringsBankWriteTime: 637559958530171434
   cacheVersion: 4
 --- !u!114 &395445836095800212
 MonoBehaviour:
@@ -1681,7 +1698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/671-Final-Project/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637549866190479478
+  lastModified: 637559958530171434
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -1925,6 +1942,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &2471309812833751772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponCooldown/AmmoRatio
+  m_EditorClassIdentifier: 
+  Name: AmmoRatio
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &2510914778107542845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2660,7 +2694,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -4075507314799269015}
+  - {fileID: -6635776313669152781}
   MinDistance: 0
   MaxDistance: 0
   Length: 34137
@@ -2707,7 +2741,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -4975566181696805217}
+  - {fileID: 6557326132378890789}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -2745,6 +2779,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &6557326132378890789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/LowHealth/Health
+  m_EditorClassIdentifier: 
+  Name: Health
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &6837794725381472991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2847,7 +2898,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 81
+  Length: 66
 --- !u!114 &7319996951465458705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2862,7 +2913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/671-Final-Project/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637549866190419637
+  lastModified: 637559958530121577
   LoadResult: 0
   FileSizes: []
   Exists: 1

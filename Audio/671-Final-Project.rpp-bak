@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "6.23/win64" 1619404178
+<REAPER_PROJECT 0.1 "6.23/win64" 1620412962
   RIPPLE 0
   GROUPOVERRIDE 0 0 0
   AUTOXFADE 1
@@ -4440,7 +4440,7 @@
       CHANMODE 0
       GUID {C1167110-2396-4B90-B846-D540208C8DB1}
       <SOURCE WAVE
-        FILE "C:\Users\jason\OneDrive\School Work\Prototyping\BulletHellPrototype\SoundWork\samples\322898__rhodesmas__ui-02.wav"
+        FILE "samples\322898__rhodesmas__ui-02.wav"
       >
     >
   >
@@ -4503,7 +4503,7 @@
       CHANMODE 0
       GUID {7F8FA9A1-CC93-4AD0-8C13-DDB23C4D6BC7}
       <SOURCE WAVE
-        FILE "C:\Users\jason\Downloads\322898__rhodesmas__ui-02.wav"
+        FILE "samples\322898__rhodesmas__ui-02.wav"
       >
     >
   >
@@ -4591,7 +4591,7 @@
       CHANMODE 0
       GUID {506649BC-E89B-4571-9AE2-61821B34AEDA}
       <SOURCE MP3
-        FILE "C:\Users\jason\OneDrive\School Work\Prototyping\BulletHellPrototype\SoundWork\samples\255764__andreas-mustola__mouse-hover.mp3" 1
+        FILE "samples\255764__andreas-mustola__mouse-hover.mp3" 1
       >
     >
   >
@@ -4654,7 +4654,7 @@
       CHANMODE 0
       GUID {A09AD628-1DAF-4950-B41F-52B957124585}
       <SOURCE MP3
-        FILE "C:\Users\jason\OneDrive\School Work\Prototyping\BulletHellPrototype\SoundWork\samples\255764__andreas-mustola__mouse-hover.mp3" 1
+        FILE "samples\255764__andreas-mustola__mouse-hover.mp3" 1
       >
     >
   >
